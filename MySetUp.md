@@ -16,6 +16,6 @@ December 11, 2018
 
 ## GitHub synchronization
 
-Setting this up.
+Setting this up. I started by using GitHub Desktop to make a repository.
 
 * [GitHub for Atom](https://github.atom.io)
