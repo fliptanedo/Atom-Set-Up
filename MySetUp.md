@@ -28,16 +28,28 @@ Atom has a nice spell checker, that you can configure to work in the LaTeX envir
 
 A suggestion from [Aerijo's gist](https://gist.github.com/Aerijo/5b9522530715e5be6e89fc012e9a72a8#getting-latex-working) is to use `hunspell` and `linter-spell-latex`.
 
-First you have to install `hunspell`, which you can do with `homebrew` (via)[http://pankdm.github.io/hunspell.html]
+First you have to install `hunspell`, which you can do with `homebrew` [via](http://pankdm.github.io/hunspell.html)
 ```
 brew install hunspell
 ```
-Then download dictionaries from (http://wordlist.aspell.net/dicts/)[http://wordlist.aspell.net/dicts/] and place into `/Library/Spelling/`.
+Then [download dictionaries](http://wordlist.aspell.net/dicts/) and place into `/Library/Spelling/`.
 
 Okay, this is a bit of a pain to set up. The first thing that happens is:
 ![linter vs spellcheck](figures/linter_spellcheck.png). I think the easiest thing is to disable the core `spell-check` package.  
 
 We are still left with some issues. There are tons of "errors" that aren't really errors. You can use the shortcut `ctrl+return` to access the `intentions` package and add/ignore items for one's personal dictionary.
+* **The problem**: This appears to be an issue with the [wordlist in hunspell](https://github.com/en-wl/wordlist/issues/122) coming from [which unicode character](https://stackoverflow.com/questions/37675866/hunspell-match-words-with-apostrophe) is being used.
+* **The solution**: For now you have to manually hack the `aff` file used by `hunspell`, for example `en_US.aff`. In this file, change
+```
+WORDCHARS 0123456789
+```
+to
+```
+WORDCHARS 0123456789'
+```
+Thanks to [client9](https://github.com/marcoagpinto/aoo-mozilla-en-dict/issues/23).
+
+
 
 ### XeLaTeX
 
@@ -67,6 +79,9 @@ Setting this up. I started by using GitHub Desktop to make a repository.
 
 * [GitHub for Atom](https://github.atom.io)
 
+
+
+
 ## Atom Basics
 
 Read the [flight manual](https://flight-manual.atom.io), the part about customization is required reading for using more advanced features.
@@ -74,5 +89,3 @@ Read the [flight manual](https://flight-manual.atom.io), the part about customiz
 * `cmd+shift+p`: command palette
 
 * `Ctrl+Shift+M`: Toggle preview
-
-`
