@@ -79,6 +79,7 @@ Setting this up. I started by using GitHub Desktop to make a repository.
 
 * [GitHub for Atom](https://github.atom.io)
 
+It's pretty easy: from `Packages > Git` (or  `ctrl+shift+9`) toggle the Git tab. From there you can fetch, stage, and commit updates. 
 
 
 
