@@ -5,6 +5,14 @@ Packages: `atom > preferences > install`
 
 ## LaTeX
 
+### Packages
+* `atom-latex` (not `latex`)
+* `language-latex`
+* `linter-spell-latex`
+
+
+### References
+
 * [Setting up Atom for LaTeX Gist](https://gist.github.com/Aerijo/5b9522530715e5be6e89fc012e9a72a8)
 * [latex package in Atom](https://atom.io/packages/latex)
 * [atom-latex package](https://atom.io/packages/atom-latex)
@@ -26,6 +34,7 @@ Atom has a nice spell checker, that you can configure to work in the LaTeX envir
 [Spell checking](https://stackoverflow.com/questions/47704586/spell-check-for-latex-file-in-atom):
 ![Spell Check](figures/spellcheck_tex.png)
 
+
 A suggestion from [Aerijo's gist](https://gist.github.com/Aerijo/5b9522530715e5be6e89fc012e9a72a8#getting-latex-working) is to use `hunspell` and `linter-spell-latex`.
 
 First you have to install `hunspell`, which you can do with `homebrew` [via](http://pankdm.github.io/hunspell.html)
@@ -34,8 +43,10 @@ brew install hunspell
 ```
 Then [download dictionaries](http://wordlist.aspell.net/dicts/) and place into `/Library/Spelling/`.
 
-Okay, this is a bit of a pain to set up. The first thing that happens is:
-![linter vs spellcheck](figures/linter_spellcheck.png). I think the easiest thing is to disable the core `spell-check` package.  
+Okay, this is a bit of a pain to set up. The first thing that happens is:  
+<img src="figures/linter_spellcheck.png" width="400px">
+
+I think the easiest thing is to disable the core `spell-check` package.  
 
 We are still left with some issues. There are tons of "errors" that aren't really errors. You can use the shortcut `ctrl+return` to access the `intentions` package and add/ignore items for one's personal dictionary.
 * **The problem**: This appears to be an issue with the [wordlist in hunspell](https://github.com/en-wl/wordlist/issues/122) coming from [which unicode character](https://stackoverflow.com/questions/37675866/hunspell-match-words-with-apostrophe) is being used.
@@ -53,10 +64,34 @@ Thanks to [client9](https://github.com/marcoagpinto/aoo-mozilla-en-dict/issues/2
 
 ### XeLaTeX
 
-XeLaTeX doesn't work out of the box. I went into the atom-latex settings and added it to the latexmk parameters:
+XeLaTeX doesn't work out of the box. One way to fix this is to go into the `atom-latex` settings and added it to the `latexmk` parameters:
 ![xelatex option](figures/xelatex.png)
 
-A more realistic implementation is to use a [custom toolchain per project](https://github.com/James-Yu/Atom-LaTeX/issues/154#issuecomment-387415756).
+I think this is a fine thing to do since XeLaTeX is a superset of pdfLaTeX. I'm not totally sure. What's nice is that the `atom-latex package` reminds you of your default options in case I want to go back.
+
+However, an alternative is to continue using `latexmk` but to include a local `.latexmkrc` configuration file with the following instruction (from [this gist](https://gist.github.com/fnurl/3117980)):
+
+```perl
+# Use xelatex instead of pdflatex
+$pdflatex = 'xelatex -synctex=1 -interaction=nonstopmode --shell-escape %O %S';
+# Always create PDFs
+$pdf_mode = 1;
+```
+
+This works quite nicely and one didn't have to change the default `atom-latex` options. You simply need to include the `.latexmkrc` file in the directories where you are using XeLaTeX. I find this convenient because I primarily use XeLaTeX for letters of recommendation. I can have the `.latexmkrc` file in each of these folders, but leave my default `latex` documents relatively universal.
+
+
+An alternative is to use a custom `.latexcfg` toolchain for each project.  See the [atom-latex project-based configuration instructions](https://github.com/James-Yu/Atom-LaTeX#-set-per-project-latex-toolchain). I could not get this to work.
+
+
+### Clean
+
+One of the things that I liked about TeXPad is that it automatically cleaned the auxilliary files after a compile. In `atom-latex` simply use: `ctrl+L ctrl+C`.
+
+### PDF Viewer
+
+`atom-latex` comes with a pdf viewer. You can `cmd-click` on the viewer to go directly to the line in the source. The default viewer opens in a new window. You can also set it to open in a new tab.
+
 
 
 ## Markdown
@@ -64,6 +99,12 @@ A more realistic implementation is to use a [custom toolchain per project](https
 * [Atom for academic writing](https://discuss.atom.io/t/using-atom-for-academic-writing/19222)
 * [Customize Atom as a LaTeX and Markdown editor](http://yangjl.com/en/codes/2016/09/09/atom)
 * [Atom as a markdown editor](https://www.news47ell.com/how-to/atom-best-markdown-editor-mac/)
+
+### Packages
+* `markdown-writer`
+* `markdown-scroll-sync`
+
+
 
 ### Markdown shortcuts
 
@@ -79,7 +120,7 @@ Setting this up. I started by using GitHub Desktop to make a repository.
 
 * [GitHub for Atom](https://github.atom.io)
 
-It's pretty easy: from `Packages > Git` (or  `ctrl+shift+9`) toggle the Git tab. From there you can fetch, stage, and commit updates. 
+It's pretty easy: from `Packages > Git` (or  `ctrl+shift+9`) toggle the Git tab. From there you can fetch, stage, and commit updates.
 
 
 
