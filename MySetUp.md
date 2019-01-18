@@ -90,6 +90,8 @@ An alternative is to use a custom `.latexcfg` toolchain for each project.  See t
 
 If you have multiple tex files in a directory, you will need to set the `latex` [root file](https://atom.io/packages/atom-latex#root_file). The easiest way to do this is to simply compile the main file. You may need to go to **packages** > `atom-latex` > Build LaTeX from active editor.
 
+For some reason this doesn't always work. There's a little icon of a house on the bottom that is also a shortcut for setting a root file.
+
 ### Clean
 
 One of the things that I liked about TeXPad is that it automatically cleaned the auxilliary files after a compile. In `atom-latex` simply use: `ctrl+L ctrl+C`.
