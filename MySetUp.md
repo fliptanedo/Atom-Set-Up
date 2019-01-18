@@ -80,9 +80,15 @@ $pdf_mode = 1;
 
 This works quite nicely and one didn't have to change the default `atom-latex` options. You simply need to include the `.latexmkrc` file in the directories where you are using XeLaTeX. I find this convenient because I primarily use XeLaTeX for letters of recommendation. I can have the `.latexmkrc` file in each of these folders, but leave my default `latex` documents relatively universal.
 
+**Life Pro Tip**: you can also name this file `latexmkrc` (without the period). This makes the file visible by default, which can help when copying templates.
+
 
 An alternative is to use a custom `.latexcfg` toolchain for each project.  See the [atom-latex project-based configuration instructions](https://github.com/James-Yu/Atom-LaTeX#-set-per-project-latex-toolchain). I could not get this to work.
 
+
+### Multiple files
+
+If you have multiple tex files in a directory, you will need to set the `latex` [root file](https://atom.io/packages/atom-latex#root_file). The easiest way to do this is to simply compile the main file. You may need to go to **packages** > `atom-latex` > Build LaTeX from active editor.
 
 ### Clean
 
