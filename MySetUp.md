@@ -90,7 +90,7 @@ One of the things that I liked about TeXPad is that it automatically cleaned the
 
 ### PDF Viewer
 
-`atom-latex` comes with a pdf viewer. You can `cmd-click` on the viewer to go directly to the line in the source. The default viewer opens in a new window. You can also set it to open in a new tab.
+`atom-latex` comes with a pdf viewer. You can `cmd-click` on the viewer to go directly to the line in the source. The default viewer opens in a new window. You can also set it to open in a new tab.·
 
 
 
