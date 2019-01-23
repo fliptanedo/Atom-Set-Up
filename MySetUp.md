@@ -94,7 +94,11 @@ For some reason this doesn't always work. There's a little icon of a house on th
 
 ### Clean
 
-One of the things that I liked about TeXPad is that it automatically cleaned the auxilliary files after a compile. In `atom-latex` simply use: `ctrl+L ctrl+C`.
+One of the things that I liked about TeXPad is that it automatically cleaned the auxilliary files after a compile. In `atom-latex` simply use: `ctrl+L ctrl+C`. Note that `.synctex.gz` files are *not* cleaned because it is important for running `synctex`. However, if you're like me, you only clean your working directory when you're done editing and hence don't need synctex. I went ahead and added `*.synctex.gz`:
+![Files To Clean](figures/latexfilestoclean.png)
+
+Note that an alternative choice would be to select the option for `atom-latex` to clean automatically after each build. But in that case cleaning `.synctex.gz` would not be a good idea.
+
 
 ### PDF Viewer
 
