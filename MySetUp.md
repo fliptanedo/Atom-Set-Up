@@ -61,6 +61,13 @@ WORDCHARS 0123456789'
 Thanks to [client9](https://github.com/marcoagpinto/aoo-mozilla-en-dict/issues/23).
 
 
+* 1/31 For some reason this broke... but was fixed when I did [this](https://github.com/AtomLinter/linter-spell-latex/issues/25#issuecomment-352250271):
+
+	go to the settings for `linter-spell-latex` and click the **View Code** button. A window should popup; in the `package.json` file (in the package root directory), search for `activationHooks`. Delete this entry and it's contents. Finally, reload Atom and try the above again. It should definitely have activated this time.
+
+* Learning words: use the `intentions` package: `ctrl+Enter` over a highlighted word will give options to learn a word.
+
+
 
 ### XeLaTeX
 
@@ -104,6 +111,53 @@ Note that an alternative choice would be to select the option for `atom-latex` t
 
 `atom-latex` comes with a pdf viewer. You can `cmd-click` on the viewer to go directly to the line in the source. The default viewer opens in a new window. You can also set it to open in a new tab.·
 
+### Quotes
+
+The `bracket-matcher` package autocompletes brackets and quotes. This is annoying in LaTeX where quotes are fussy. I add the following to my `config.cson`:
+
+```cson
+".latex.tex.text":
+  "bracket-matcher":
+    autocompleteCharacters: [
+      "$$"
+      "{}"
+      "()"
+      "[]"
+      "`''"
+      "\"\""
+      "''"
+    ]
+```
+
+Some related discussion: [bracket-matcher and atom-latex](https://github.com/James-Yu/Atom-LaTeX/issues/140), [atom: basic customization](https://flight-manual.atom.io/using-atom/sections/basic-customization/)
+
+There's a lingering issue with `linter-spell-latex` because it doesn't know how to distinguish the quote from the word. [Bug report](https://github.com/AtomLinter/linter-spell-latex/issues/40).
+
+### Atom-Beautify
+
+Some discussion at the bottom of [this gist](https://gist.github.com/Aerijo/5b9522530715e5be6e89fc012e9a72a8#beautify); requires `latexindent.pl` which you can get from the texlive utility of MacTex.
+
+### Custom Snippets
+
+One of the great features of Atom is the ability to write custom snippets that are sensitive to individual environments. A snippet is like short code: when you tab into it, it auto-fills your writing. I found [this description](http://kickinbahk.com/atomeditor-custom-snippets.html) helpful, but [this was the example](https://github.com/atom/snippets/issues/127#issuecomment-92384921) that got everything to work for me.
+
+Long story short: `Atom` > `Snippets` takes you to your custom snippets. Here's what I put in to make pmatrix automatic:
+
+```
+	'.text.tex.latex':
+    'pmatrix':
+      'prefix': 'pmatrix'
+      'body': """
+      \\\\begin{pmatrix}
+        $1
+      \\\\end{pmatrix}
+      """
+```
+
+It works liek a charm.
+
+
+
 
 
 ## Markdown
@@ -143,3 +197,11 @@ Read the [flight manual](https://flight-manual.atom.io), the part about customiz
 * `cmd+shift+p`: command palette
 
 * `Ctrl+Shift+M`: Toggle preview
+
+
+## Miscellaneous
+
+* `typewriter` package for centered text in editor
+* `settings` > `editor`
+	- scroll past end: so you can move the last line to the center of the editor
+	- soft wrap at preferred line length: keeps the editor clean without introducing hard wrapping.
